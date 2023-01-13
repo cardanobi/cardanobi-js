@@ -28,7 +28,7 @@ const CBI = await new CardanoBI({ apiKey: "MY-KEY", apiSecret: "MY-SECRET", netw
 ```
 
 Output
-```json
+```js
 {
   id: 30,
   out_sum: 115310725457131,
