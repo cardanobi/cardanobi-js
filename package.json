@@ -1,0 +1,17 @@
+{
+  "name": "@cardanobi/cardanobi-js",
+  "version": "1.0",
+  "description": "Node.js / Javascript SDK for the CardanoBI API (https://cardanobi.io)",
+  "keywords": [
+    "cardanobi",
+    "cardanobi api",
+    "cardano",
+    "cardano api"
+  ],
+  "license": "Apache-2.0",
+  "author": "cardanobi.io",
+  "dependencies": {
+    "axios": "^1.1.2"
+  },
+  "type": "module"
+}
