@@ -30,13 +30,13 @@ const CBI = await new CardanoBI({ apiKey: "MY-KEY", apiSecret: "MY-SECRET", netw
 Output
 ```js
 {
-  id: 30,
-  out_sum: 115310725457131,
-  fees: 3174268972,
-  tx_count: 14186,
-  blk_count: 21126,
-  no: 29,
-  start_time: '2022-10-24T00:01:08',
-  end_time: '2022-10-28T23:59:22'
+  id: 31,
+  out_sum: 102865306257160,
+  fees: 4942589267,
+  tx_count: 24249,
+  blk_count: 20386,
+  no: 30,
+  start_time: '2022-10-29T00:00:25',
+  end_time: '2022-11-02T23:59:27'
 }
 ```
