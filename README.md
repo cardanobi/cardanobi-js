@@ -10,6 +10,7 @@ npm install
 
 ## Example
 
+Let's get the details for epoch #30 in preprod.
 ```js
 import { CardanoBI } from './cardanobi-js/CardanoBI.js'
 
