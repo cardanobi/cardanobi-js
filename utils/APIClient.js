@@ -43,7 +43,7 @@ export class APIClient {
 
     getAccessToken = async () => {
         try {
-            console.log("APIClient.getAccessToken22");
+            // console.log("APIClient.getAccessToken");
             // const data = { grant_type: "client_credentials", scopes: "cardanobi-core-read" };
             const data = { grant_type: "client_credentials" };
             const options = {
