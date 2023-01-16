@@ -1,13 +1,12 @@
 'use strict'
 
-import { handleError } from "../../utils/Misc.js";
+import { handleError } from "../../../utils/Misc.js";
 
-export async function epochs(options) {
+export async function stats(options) {
     return new Promise((resolve, reject) => {
-        const { id, query, odata } = options || { undefined, undefined, undefined };
-        let path = "api/core/epochs";
-        if (odata) path = "api/core/odata/epochs";
-        if (id) path = path + "/" + id;
+        const { query, odata } = options || { undefined, undefined };
+        let path = "api/bi/pools/stats";
+        if (odata) path = "api/bi/odata/poolsstats";
         if (query) path = path + "?" + query;
 
         this.client.getPrivate(path)

@@ -27,7 +27,7 @@ export class APIClient {
     async init() {
         return await this.getAccessToken().then(token => {
             this.accessToken = token;
-            console.log("APIClient.init, accessToken: ", this.accessToken);
+            // console.log("APIClient.init, accessToken: ", this.accessToken);
         })
     }
 
