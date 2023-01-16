@@ -2,8 +2,7 @@
 import { CardanoBI } from '../CardanoBI.js'
 // import { CardanoBI } from '@cardanobi/cardanobi-js';
 
-// const CBI = await new CardanoBI({ apiKey: "client_auto_1", apiSecret: "secret", network: "preprod" });
-const CBI = await new CardanoBI({ apiKey: "client_auto_2", apiSecret: "secret", network: "preprod" });
+const CBI = await new CardanoBI({ apiKey: "*******", apiSecret: "******", network: "preprod" });
 
 const runUnit1 = async () => {
     try {
@@ -27,7 +26,7 @@ const runUnit2 = async () => {
 
         let currentEpochNo = latestEpoch[0].id;
         let startEpochNo = currentEpochNo - 11;
-        
+
         let filter = `$count=true&$filter=epoch_no gt ${startEpochNo} and epoch_no lt ${currentEpochNo}`;
         console.log("filter: ", filter);
 
