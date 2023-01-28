@@ -1,14 +1,18 @@
 'use strict'
 
-import { Epochs } from './core/epochs.js';
-import { handleError } from "../utils/Misc.js";
+import { handleError } from "../../../utils/Misc.js";
 
-export async function epochs_(options) {
+export async function params_(options) {
     return new Promise((resolve, reject) => {
         const { no, query, odata } = options || { undefined, undefined, undefined };
-        let path = "api/core/epochs";
-        if (odata) path = "api/core/odata/epochs";
-        if (no) path = path + "/" + no;
+        let path = "api/core/epochs/params";
+        if (no) path = `api/core/epochs/${no}/params`;
+
+        if (odata) {
+            path = "api/core/odata/epochsparams";
+            if (no) path = path + "/" + no;
+        }
+        
         if (query) path = path + "?" + query;
 
         this.client.getPrivate(path)
@@ -20,14 +24,4 @@ export async function epochs_(options) {
                 handleError(err);
             });
     });
-}
-
-export class Core {
-    constructor(client) {
-        this.client = client;
-
-        this.epochs = new Epochs(client);
-    }
-
-    epochs_ = epochs_;
 }

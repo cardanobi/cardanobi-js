@@ -1,6 +1,7 @@
 'use strict'
 
 import * as ct from './Constants.js';
+import { handleError } from "./Misc.js";
 import axios from 'axios';
 import qs from 'querystring';
 
@@ -20,7 +21,7 @@ export class APIClient {
         this.proxy = proxy || false
         this.httpsAgent = httpsAgent
         // this.logger = logger || defaultLogger
-        this.auth_token = Buffer.from(this.apiKey + ":" + this.apiSecret).toString("base64"); 
+        this.auth_token = Buffer.from(`${this.apiKey}:${this.apiSecret}`).toString("base64"); 
         this.accessToken = undefined;
     }
     
@@ -28,7 +29,10 @@ export class APIClient {
         return await this.getAccessToken().then(token => {
             this.accessToken = token;
             // console.log("APIClient.init, accessToken: ", this.accessToken);
-        })
+        }).catch(err => {
+            // reject(handleError(err));
+            handleError(err);
+        });
     }
 
     validateOptions(options) {
@@ -44,26 +48,29 @@ export class APIClient {
     getAccessToken = async () => {
         try {
             // console.log("APIClient.getAccessToken");
-            // const data = { grant_type: "client_credentials", scopes: "cardanobi-core-read" };
             const data = { grant_type: "client_credentials" };
             const options = {
                 method: "POST",
                 headers: {
-                    Authorization:
-                        "Basic " + this.auth_token,
-                    "content-type": "application/x-www-form-urlencoded",
+                    "Authorization": `Basic ${this.auth_token}`,
+                    "Content-Type": "application/x-www-form-urlencoded",
                 },
                 data: qs.stringify(data),
                 url: this.idsBaseURL +"/connect/token",
             };
             const response = await axios(options);
+
+            // const response = await axios.post(this.idsBaseURL +"/connect/token", qs.stringify(data), { auth: {
+            //     username: this.apiKey,
+            //     password: this.apiSecret
+            //   }})
             const { access_token } = response.data;
 
             // console.log("getAccessToken Response: ", response.data);
             return access_token;
         } catch (error) {
             //on fail, log the error in console
-            console.log("getAccessToken error:", error.response.status, error.response.statusText, error.response.data);
+            // console.log("getAccessToken error:", error.response.status, error.response.statusText, error.response.data);
             throw error;
         }
     }

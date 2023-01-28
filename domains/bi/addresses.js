@@ -1,8 +1,8 @@
 'use strict'
 
-import { stats_ } from './pools/stats.js';
+import { stats_ } from './addresses/stats.js';
 
-export class Pools {
+export class Addresses {
     constructor(client) {
         this.client = client;
     }
