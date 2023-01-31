@@ -22,6 +22,24 @@ export async function epochs_(options) {
     });
 }
 
+export async function epochsparams_(options) {
+    return new Promise((resolve, reject) => {
+        const { no, query, odata } = options || { undefined, undefined, true:1 };
+        let path = "api/core/odata/epochsparams";
+        if (no) path = path + "/" + no;
+        if (query) path = path + "?" + query;
+
+        this.client.getPrivate(path)
+            .then(resp => {
+                resolve(resp);
+            })
+            .catch(err => {
+                // reject(handleError(err));
+                handleError(err);
+            });
+    });
+}
+
 export class Core {
     constructor(client) {
         this.client = client;
@@ -30,4 +48,5 @@ export class Core {
     }
 
     epochs_ = epochs_;
+    epochsparams_ = epochsparams_;
 }
