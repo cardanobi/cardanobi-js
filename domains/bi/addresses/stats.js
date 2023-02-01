@@ -1,6 +1,7 @@
 'use strict'
 
 import { handleError } from "../../../utils/Misc.js";
+import { epochs_ } from './stats/epochs.js';
 
 export async function stats_(options) {
     return new Promise((resolve, reject) => {
@@ -20,4 +21,12 @@ export async function stats_(options) {
                 handleError(err);
             });
     });
+}
+
+export class Stats {
+    constructor(client) {
+        this.client = client;
+    }
+
+    epochs_ = epochs_;
 }

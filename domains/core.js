@@ -149,6 +149,25 @@ export async function poolsrelays_(options) {
     });
 }
 
+export async function addressesinfo_(options) {
+    return new Promise((resolve, reject) => {
+        const { address, query, odata } = options || { undefined, undefined, true:1 };
+        let path = "api/core/odata/addressesinfo";
+        if (address) path = path + "/" + address;
+        
+        if (query) path = path + "?" + query;
+
+        this.client.getPrivate(path)
+            .then(resp => {
+                resolve(resp);
+            })
+            .catch(err => {
+                // reject(handleError(err));
+                handleError(err);
+            });
+    });
+}
+
 export class Core {
     constructor(client) {
         this.client = client;
@@ -166,4 +185,5 @@ export class Core {
     poolsofflinefetcherrors_ = poolsofflinefetcherrors_;
     poolsupdates_ = poolsupdates_;
     poolsrelays_ = poolsrelays_;
+    addressesinfo_ = addressesinfo_;
 }

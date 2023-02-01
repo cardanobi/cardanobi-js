@@ -1,16 +1,13 @@
 'use strict'
 
-import { handleError } from "../../../utils/Misc.js";
-import { pools_ } from './stakes/pools.js';
+import { handleError } from "../../../../utils/Misc.js";
 
-export async function stakes_(options) {
+export async function pools_(options) {
     return new Promise((resolve, reject) => {
         const { no, pool_hash, query, odata } = options || { undefined, undefined, undefined, undefined };
-        let path = "api/bi/epochs/stakes";
-        if (no) path = `api/bi/epochs/${no}/stakes`;
+        let path = "api/bi/epochs/stakes/pools/";
         if (pool_hash) path = `api/bi/epochs/stakes/pools/${pool_hash}`;
         if (no && pool_hash) path = `api/bi/epochs/${no}/stakes/pools/${pool_hash}`;
-        if (odata) path = "api/bi/odata/epochsstakes";
         if (query) path = path + "?" + query;
 
         this.client.getPrivate(path)
@@ -22,12 +19,4 @@ export async function stakes_(options) {
                 handleError(err);
             });
     });
-}
-
-export class Stakes {
-    constructor(client) {
-        this.client = client;
-    }
-
-    pools_ = pools_;
 }
