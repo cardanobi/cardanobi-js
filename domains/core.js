@@ -62,7 +62,7 @@ export async function poolshashes_(options) {
 export async function poolsmetadata_(options) {
     return new Promise((resolve, reject) => {
         const { pool_id, query, odata } = options || { undefined, undefined, true:1 };
-        let path = "api/core/odata/poolmetadata";
+        let path = "api/core/odata/poolsmetadata";
         if (pool_id) path = `api/core/odata/poolsmetadata/${pool_id}`;
         if (query) path = path + "?" + query;
 
