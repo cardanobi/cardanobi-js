@@ -2,12 +2,17 @@
 
 import { handleError } from "../../../utils/Misc.js";
 
-export async function stats_(options) {
+export async function info_(options) {
     return new Promise((resolve, reject) => {
-        const { pool_hash, query, odata } = options || { undefined, undefined, undefined };
-        let path = "api/bi/pools/stats";
-        if (pool_hash) path = `api/bi/pools/${pool_hash}/stats`;
-        if (odata) path = "api/bi/odata/poolsstats";
+        const { address, query, odata } = options || { undefined, undefined, undefined };
+        let path = "api/core/addresses/info";
+        if (address) path = `api/core/addresses/${address}/info`;
+
+        if (odata) {
+            path = "api/core/odata/addressesinfo";
+            if (address) path = path + "/" + address;
+        }
+        
         if (query) path = path + "?" + query;
 
         this.client.getPrivate(path)
