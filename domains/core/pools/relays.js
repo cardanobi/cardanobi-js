@@ -1,6 +1,7 @@
 'use strict'
 
 import { handleError } from "../../../utils/Misc.js";
+import { updates_ } from './relays/updates.js';
 
 export async function relays_(options) {
     return new Promise((resolve, reject) => {
@@ -25,4 +26,12 @@ export async function relays_(options) {
                 handleError(err);
             });
     });
+}
+
+export class Relays {
+    constructor(client) {
+        this.client = client;
+    }
+
+    updates_ = updates_;
 }
