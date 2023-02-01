@@ -4,7 +4,6 @@ import { handleError } from "../utils/Misc.js";
 import { Epochs } from './core/epochs.js';
 import { Addresses } from './core/addresses.js';
 import { Pools } from './core/pools.js';
-import { handleError } from "../utils/Misc.js";
 
 export async function epochs_(options) {
     return new Promise((resolve, reject) => {
