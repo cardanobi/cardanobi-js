@@ -42,6 +42,23 @@ export async function epochsparams_(options) {
     });
 }
 
+export async function epochsstakes_(options) {
+    return new Promise((resolve, reject) => {
+        const { query, odata } = options || { undefined, true:1 };
+        let path = "api/core/odata/epochsstakes";
+        if (query) path = path + "?" + query;
+
+        this.client.getPrivate(path)
+            .then(resp => {
+                resolve(resp);
+            })
+            .catch(err => {
+                // reject(handleError(err));
+                handleError(err);
+            });
+    });
+}
+
 export async function poolshashes_(options) {
     return new Promise((resolve, reject) => {
         const { query, odata } = options || { undefined, true:1 };
@@ -179,6 +196,7 @@ export class Core {
 
     epochs_ = epochs_;
     epochsparams_ = epochsparams_;
+    epochsstakes_ = epochsstakes_;
     poolshashes_ = poolshashes_;
     poolsmetadata_ = poolsmetadata_;
     poolsofflinedata_ = poolsofflinedata_;
