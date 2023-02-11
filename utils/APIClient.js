@@ -7,8 +7,6 @@ import qs from 'querystring';
 
 export class APIClient {
     constructor(options) {
-        this.validateOptions(options); 
-
         const { apiKey, apiSecret, network, baseURL, idsBaseURL, logger, timeout, proxy, httpsAgent } = options;
 
         this.apiKey = apiKey
@@ -16,6 +14,9 @@ export class APIClient {
         this.network = network || ct.NETWORKS[0];
         this.baseURL = baseURL || ct.API_BASE_URLS[this.network];
         this.idsBaseURL = idsBaseURL || ct.IDS_BASE_URLS[this.network];
+
+        this.validateOptions(options); 
+
         // default is 0 (no timeout)
         this.timeout = timeout || 0
         this.proxy = proxy || false
@@ -37,11 +38,8 @@ export class APIClient {
 
     validateOptions(options) {
         //network
-        if (!options.network) {
-            throw "APIClient - Error - network missing from APIClient constructor options!";
-        }
-        if (!ct.NETWORKS.includes(options.network)) {
-            throw "APIClient - Error - unknown network: " + options.network;
+        if (!ct.NETWORKS.includes(this.network)) {
+            throw "APIClient - Error - unknown network: " + this.network;
         }
     }
 
