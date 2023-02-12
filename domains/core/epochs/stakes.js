@@ -10,7 +10,10 @@ export async function stakes_(options) {
         if (no) path = `api/core/epochs/${no}/stakes`;
         if (pool_hash) path = `api/core/epochs/stakes/pools/${pool_hash}`;
         if (no && pool_hash) path = `api/core/epochs/${no}/stakes/pools/${pool_hash}`;
-        if (odata) path = "api/core/odata/epochsstakes";
+        if (odata) {
+            path = "api/core/odata/epochsstakes";
+            if (no) path = `api/core/odata/epochsstakes/${no}`;
+        }
         if (query) path = path + "?" + query;
 
         this.client.getPrivate(path)

@@ -44,8 +44,9 @@ export async function epochsparams_(options) {
 
 export async function epochsstakes_(options) {
     return new Promise((resolve, reject) => {
-        const { query, odata } = options || { undefined, true:1 };
+        const { no, query, odata } = options || { undefined, undefined, true:1 };
         let path = "api/core/odata/epochsstakes";
+        if (no) path = path + "/" + no;
         if (query) path = path + "?" + query;
 
         this.client.getPrivate(path)
