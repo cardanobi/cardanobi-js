@@ -4,6 +4,7 @@ import { handleError } from "../utils/Misc.js";
 import { Epochs } from './core/epochs.js';
 import { Addresses } from './core/addresses.js';
 import { Pools } from './core/pools.js';
+import { Blocks } from './core/blocks.js';
 
 export async function epochs_(options) {
     return new Promise((resolve, reject) => {
@@ -185,6 +186,26 @@ export async function addressesinfo_(options) {
     });
 }
 
+export async function blocks_(options) {
+    return new Promise((resolve, reject) => {
+        const { block_no, block_hash, epoch_no, slot_no, query, odata } = options || { undefined, undefined, undefined, undefined, undefined, undefined };
+        let path = "api/core/blocks";
+        if (block_no) path = path + "/" + block_no;
+        else if (block_hash) path = path + "/" + block_hash;
+        else if (epoch_no && slot_no) path = "api/core/blocks/epochs/"+epoch_no+"/slots/"+slot_no;
+        if (query) path = path + "?" + query;
+
+        this.client.getPrivate(path)
+            .then(resp => {
+                resolve(resp);
+            })
+            .catch(err => {
+                // reject(handleError(err));
+                handleError(err);
+            });
+    });
+}
+
 export class Core {
     constructor(client) {
         this.client = client;
@@ -192,6 +213,7 @@ export class Core {
         this.epochs = new Epochs(client);
         this.addresses = new Addresses(client);
         this.pools = new Pools(client);
+        this.blocks = new Blocks(this.client);
     }
 
     epochs_ = epochs_;
@@ -204,4 +226,5 @@ export class Core {
     poolsupdates_ = poolsupdates_;
     poolsrelays_ = poolsrelays_;
     addressesinfo_ = addressesinfo_;
+    blocks_ = blocks_;
 }
