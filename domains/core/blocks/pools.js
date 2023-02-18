@@ -23,8 +23,7 @@ export async function latest_(options) {
 export async function history_(options) {
     return new Promise((resolve, reject) => {
         const { pool_hash, query, odata } = options || { undefined, undefined, undefined };
-        let path = "api/core/blocks/history/pools";
-        if (pool_hash) path = path + "/" + pool_hash;
+        let path = `api/core/blocks/pools/${pool_hash}/history`;
         if (query) path = path + "?" + query;
 
         this.client.getPrivate(path)

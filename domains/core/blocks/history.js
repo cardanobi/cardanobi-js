@@ -60,6 +60,23 @@ export async function next_(options) {
     });
 }
 
+export async function pools_(options) {
+    return new Promise((resolve, reject) => {
+        const { pool_hash, query, odata } = options || { undefined, undefined, undefined };
+        let path = `api/core/blocks/history/pools/${pool_hash}`;
+        if (query) path = path + "?" + query;
+
+        this.client.getPrivate(path)
+            .then(resp => {
+                resolve(resp);
+            })
+            .catch(err => {
+                // reject(handleError(err));
+                handleError(err);
+            });
+    });
+}
+
 export class History {
     constructor(client) {
         this.client = client;
@@ -67,4 +84,5 @@ export class History {
 
     prev_ = prev_;
     next_ = next_;
+    pools_ = pools_;
 }
