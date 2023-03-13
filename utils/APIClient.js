@@ -45,7 +45,6 @@ export class APIClient {
 
     getAccessToken = async () => {
         try {
-            // console.log("APIClient.getAccessToken");
             const data = { grant_type: "client_credentials" };
             const options = {
                 method: "POST",
@@ -58,6 +57,7 @@ export class APIClient {
             };
             const response = await axios(options);
 
+            // console.log("APIClient.getAccessToken, options:",options);
             // const response = await axios.post(this.idsBaseURL +"/connect/token", qs.stringify(data), { auth: {
             //     username: this.apiKey,
             //     password: this.apiSecret
