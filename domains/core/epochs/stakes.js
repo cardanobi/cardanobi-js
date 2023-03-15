@@ -5,16 +5,22 @@ import { pools_ } from './stakes/pools.js';
 
 export async function stakes_(options) {
     return new Promise((resolve, reject) => {
-        const { no, pool_hash, query, odata } = options || { undefined, undefined, undefined, undefined };
+        const { epoch_no, pool_hash, query, odata } = options || { undefined, undefined, undefined, undefined };
+        let queryParams = ["epoch_no", "pool_hash"];
+        let query_ = queryParams.filter(e => eval(e)).map(e => e + "=" + eval(e)).join("&");
+        if (query) query_ = `${query_}&${query}`;
+
         let path = "api/core/epochs/stakes";
-        if (no) path = `api/core/epochs/${no}/stakes`;
+        if (epoch_no) path = `api/core/epochs/${epoch_no}/stakes`;
         if (pool_hash) path = `api/core/epochs/stakes/pools/${pool_hash}`;
-        if (no && pool_hash) path = `api/core/epochs/${no}/stakes/pools/${pool_hash}`;
+        if (epoch_no && pool_hash) path = `api/core/epochs/${epoch_no}/stakes/pools/${pool_hash}`;
+        if (query) path = path + "?" + query;
+
         if (odata) {
             path = "api/core/odata/epochsstakes";
-            if (no) path = `api/core/odata/epochsstakes/${no}`;
+            if (query_) path = path + "?" + query_;
         }
-        if (query) path = path + "?" + query;
+        
 
         this.client.getPrivate(path)
             .then(resp => {
