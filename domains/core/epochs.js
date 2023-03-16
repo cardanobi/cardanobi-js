@@ -2,6 +2,7 @@
 
 import { params_, Params } from './epochs/params.js';
 import { stakes_, Stakes } from './epochs/stakes.js';
+import { Latest } from './epochs/latest.js';
 
 export async function latest_(options) {
     return new Promise((resolve, reject) => {
@@ -25,6 +26,7 @@ export class Epochs {
         this.client = client;
         this.stakes = new Stakes(this.client);
         this.params = new Params(this.client);
+        this.latest = new Latest(this.client);
     }
 
     params_ = params_;
