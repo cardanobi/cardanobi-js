@@ -6,6 +6,7 @@ import { Addresses } from './core/addresses.js';
 import { Pools } from './core/pools.js';
 import { Blocks } from './core/blocks.js';
 import { Transactions } from './core/transactions.js';
+import { Assets } from './core/assets.js';
 
 export async function epochs_(options) {
     return new Promise((resolve, reject) => {
@@ -228,6 +229,28 @@ export async function transactions_(options) {
     });
 }
 
+export async function assets_(options) {
+    return new Promise((resolve, reject) => {
+        const { fingerprint, order, page_no, page_size, query, odata } = options || { undefined, undefined, undefined, undefined, undefined, undefined };
+        let queryParams = ["order", "page_no", "page_size"];
+        let query_ = queryParams.filter(e => eval(e)).map(e => e + "=" + eval(e)).join("&");
+        if (query) query_ = `${query_}&${query}`;
+
+        let path = `api/core/assets`;
+        if (fingerprint) path = `api/core/assets/${fingerprint}`;
+        if (query_) path = path + "?" + query_;
+
+        this.client.getPrivate(path)
+            .then(resp => {
+                resolve(resp);
+            })
+            .catch(err => {
+                // reject(handleError(err));
+                handleError(err);
+            });
+    });
+}
+
 export class Core {
     constructor(client) {
         this.client = client;
@@ -237,6 +260,7 @@ export class Core {
         this.pools = new Pools(client);
         this.blocks = new Blocks(this.client);
         this.transactions = new Transactions(this.client);
+        this.assets = new Assets(this.client);
     }
 
     epochs_ = epochs_;
@@ -251,4 +275,5 @@ export class Core {
     addressesinfo_ = addressesinfo_;
     blocks_ = blocks_;
     transactions_ = transactions_;
+    assets_ = assets_;
 }
