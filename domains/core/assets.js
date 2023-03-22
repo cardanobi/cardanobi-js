@@ -49,8 +49,6 @@ export async function addresses_(options) {
         let queryParams = ["order", "page_no", "page_size"];
         let query_ = queryParams.filter(e => eval(e)).map(e => e + "=" + eval(e)).join("&");
         if (query) query_ = `${query_}&${query}`;
-        console.log(`query: ${query}`);
-        console.log(`query_: ${query_}`);
 
         let path = `api/core/assets/${fingerprint}/addresses`;
         if (query_) path = path + "?" + query_;
