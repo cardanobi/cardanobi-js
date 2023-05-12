@@ -1,5 +1,7 @@
 'use strict'
 
+import { handleError } from "../../utils/Misc.js";
+
 export async function history_(options) {
     return new Promise((resolve, reject) => {
         const { fingerprint, order, page_no, page_size, query, odata } = options || { undefined, undefined, undefined, undefined, undefined, undefined };

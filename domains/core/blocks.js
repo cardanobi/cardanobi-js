@@ -1,5 +1,6 @@
 'use strict'
 
+import { handleError } from "../../utils/Misc.js";
 import { latest_, Latest } from './blocks/latest.js';
 import { history_, History } from './blocks/history.js';
 import { Pools } from './blocks/pools.js';

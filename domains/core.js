@@ -7,6 +7,7 @@ import { Pools } from './core/pools.js';
 import { Blocks } from './core/blocks.js';
 import { Transactions } from './core/transactions.js';
 import { Assets } from './core/assets.js';
+import { Accounts } from './core/accounts.js';
 
 export async function epochs_(options) {
     return new Promise((resolve, reject) => {
@@ -251,6 +252,24 @@ export async function assets_(options) {
     });
 }
 
+export async function polls_(options) {
+    return new Promise((resolve, reject) => {
+        const { poll_hash, query, odata } = options || { undefined, undefined, undefined };
+        let path = "api/core/polls";
+        if (poll_hash) path = path + "/" + poll_hash;
+        if (query) path = path + "?" + query;
+
+        this.client.getPrivate(path)
+            .then(resp => {
+                resolve(resp);
+            })
+            .catch(err => {
+                // reject(handleError(err));
+                handleError(err);
+            });
+    });
+}
+
 export class Core {
     constructor(client) {
         this.client = client;
@@ -261,6 +280,7 @@ export class Core {
         this.blocks = new Blocks(this.client);
         this.transactions = new Transactions(this.client);
         this.assets = new Assets(this.client);
+        this.accounts = new Accounts(this.client);
     }
 
     epochs_ = epochs_;
@@ -276,4 +296,5 @@ export class Core {
     blocks_ = blocks_;
     transactions_ = transactions_;
     assets_ = assets_;
+    polls_ = polls_;
 }

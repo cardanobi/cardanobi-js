@@ -1,7 +1,7 @@
 'use strict'
 
-import { stats_ } from './pools/stats.js';
 import { handleError } from "../../utils/Misc.js";
+import { stats_ } from './pools/stats.js';
 
 export async function epochs_(options) {
     return new Promise((resolve, reject) => {

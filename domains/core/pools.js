@@ -1,5 +1,6 @@
 'use strict'
 
+import { handleError } from "../../utils/Misc.js";
 import { hashes_ } from './pools/hashes.js';
 import { metadata_, Metadata } from './pools/metadata.js';
 import { offlinedata_ } from './pools/offlinedata.js';

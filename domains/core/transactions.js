@@ -1,5 +1,7 @@
 'use strict'
 
+import { handleError } from "../../utils/Misc.js";
+
 export async function utxos_(options) {
     return new Promise((resolve, reject) => {
         const { transaction_hash, query, odata } = options || { undefined, undefined, undefined };
