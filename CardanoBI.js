@@ -8,7 +8,7 @@ import { Core } from './domains/core.js';
 export class CardanoBI {
     constructor(options) {
         return (async () => {
-            const { apiKey, apiSecret, baseURL, idsBaseURL, logger, timeout, proxy, httpsAgent } = options;
+            const { apiKey, apiSecret, baseURL, idsBaseURL, logger, timeout, proxy, httpsAgent } = options || {};
 
             this.client = new APIClient(options);
             await this.client.init();

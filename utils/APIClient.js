@@ -1,5 +1,6 @@
 'use strict'
 
+import { throws } from 'assert';
 import * as ct from './Constants.js';
 import { handleError } from "./Misc.js";
 import axios from 'axios';
@@ -7,7 +8,7 @@ import qs from 'querystring';
 
 export class APIClient {
     constructor(options) {
-        const { apiKey, apiSecret, network, baseURL, idsBaseURL, logger, timeout, proxy, httpsAgent } = options;
+        const { apiKey, apiSecret, network, baseURL, idsBaseURL, logger, timeout, proxy, httpsAgent } = options  || {};
 
         this.apiKey = apiKey
         this.apiSecret = apiSecret
@@ -27,13 +28,18 @@ export class APIClient {
     }
     
     async init() {
-        return await this.getAccessToken().then(token => {
-            this.accessToken = token;
-            // console.log("APIClient.init, accessToken: ", this.accessToken);
-        }).catch(err => {
-            // reject(handleError(err));
-            handleError(err);
-        });
+        if (this.apiKey === undefined && this.apiSecret === undefined) {
+            this.apiKey = "onlypublic";
+            this.accessToken = undefined;
+        } else {
+            return await this.getAccessToken().then(token => {
+                this.accessToken = token;
+                // console.log("APIClient.init, accessToken: ", this.accessToken);
+            }).catch(err => {
+                // reject(handleError(err));
+                handleError(err);
+            });
+        }
     }
 
     validateOptions(options) {
@@ -86,7 +92,8 @@ export class APIClient {
                 headers = {
                     'Authorization': "Basic " + this.auth_token,
                     'Accept': 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Client-Api-Key': this.apiKey
                 };
 
             const response = await axios({

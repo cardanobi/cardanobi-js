@@ -259,7 +259,7 @@ export async function polls_(options) {
         if (poll_hash) path = path + "/" + poll_hash;
         if (query) path = path + "?" + query;
 
-        this.client.getPrivate(path)
+        this.client.getPublic(path)
             .then(resp => {
                 resolve(resp);
             })
