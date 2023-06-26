@@ -1,7 +1,7 @@
 export const NETWORKS = ["mainnet", "preprod", "preview"];
 
 export const API_BASE_URLS = {
-    mainnet: 'https://mainnet.cardanobi.io:4000',
+    mainnet: 'https://cardanobi.io:4000',
     preprod: 'https://preprod.cardanobi.io:4000',
     preview: 'https://preview.cardanobi.io:4000'
 };
@@ -13,7 +13,7 @@ export const API_BASE_URLS = {
 // };
 
 export const IDS_BASE_URLS = {
-    mainnet: 'https://mainnet.cardanobi.io:44010',
+    mainnet: 'https://cardanobi.io:44010',
     preprod: 'https://preprod.cardanobi.io:44010',
     preview: 'https://preview.cardanobi.io:44010'
 };
