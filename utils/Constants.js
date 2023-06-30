@@ -6,16 +6,10 @@ export const API_BASE_URLS = {
     preview: 'https://preview.cardanobi.io:4000'
 };
 
-// export const IDS_BASE_URLS = {
-//     mainnet: 'https://mainnet.cardanobi.io:5000',
-//     preprod: 'https://preprod.cardanobi.io:5000',
-//     preview: 'https://preview.cardanobi.io:5000'
-// };
-
 export const IDS_BASE_URLS = {
     mainnet: 'https://cardanobi.io:44010',
-    preprod: 'https://preprod.cardanobi.io:44010',
-    preview: 'https://preview.cardanobi.io:44010'
+    preprod: 'https://cardanobi.io:44010',
+    preview: 'https://cardanobi.io:44010'
 };
 
 export const API_VERSION = 1;
