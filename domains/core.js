@@ -314,7 +314,7 @@ export class Core {
     addressesinfo_ = addressesinfo_;
     blocks_ = blocks_;
     transactions_ = transactions_;
-    accounts_ = assets_;
+    accounts_ = accounts_;
     assets_ = assets_;
     polls_ = polls_;
 }
