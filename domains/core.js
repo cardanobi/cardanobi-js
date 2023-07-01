@@ -252,6 +252,25 @@ export async function assets_(options) {
     });
 }
 
+export async function accounts_(options) {
+    return new Promise((resolve, reject) => {
+        const { stake_address, query, odata } = options || { undefined, undefined, undefined };
+        let path = "api/core/accounts";
+        if (stake_address) path = path + "/" + stake_address;
+        if (query) path = path + "?" + query;
+
+        this.client.getPrivate(path)
+            .then(resp => {
+                resolve(resp);
+            })
+            .catch(err => {
+                // reject(handleError(err));
+                handleError(err);
+            });
+    });
+}
+
+
 export async function polls_(options) {
     return new Promise((resolve, reject) => {
         const { poll_hash, query, odata } = options || { undefined, undefined, undefined };
@@ -295,6 +314,7 @@ export class Core {
     addressesinfo_ = addressesinfo_;
     blocks_ = blocks_;
     transactions_ = transactions_;
+    accounts_ = assets_;
     assets_ = assets_;
     polls_ = polls_;
 }
