@@ -60,7 +60,7 @@ Please visit our [API Reference Documentation](https://docs.cardanobi.io/docs/in
 
 ## Tutorial
 
-Please try one of our [Tutorials](https://docs.cardanobi.io/docs/category/tutorials) to get to know more about CardanoBI's capabilities. :heart:
+Please try one of our [Tutorials](https://docs.cardanobi.io/docs/category/tutorials) to get to know more about CardanoBI's capabilities.
 
 ## Contributions
 
