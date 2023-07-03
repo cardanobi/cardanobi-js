@@ -61,3 +61,7 @@ Please visit our [API Reference Documentation](https://docs.cardanobi.io/docs/in
 ## Tutorial
 
 Please try one of our [Tutorials](https://docs.cardanobi.io/docs/category/tutorials) to get to know more about CardanoBI's capabilities. :heart:
+
+## Contributions
+
+CardanoBI is fully open-source and everyone is welcome to contribute. Please reach out to us via twitter (@CardanoBI), email (info@cardanobi.io) or by submitting a PR. :heart:
