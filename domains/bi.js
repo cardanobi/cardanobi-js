@@ -6,8 +6,8 @@ import { Addresses } from './bi/addresses.js';
 
 export async function addressesstats_(options) {
     return new Promise((resolve, reject) => {
-        const { stake_address, epoch_no, query, odata } = options || { undefined, undefined, undefined, true: 1 };
-        let queryParams = ["stake_address", "epoch_no"];
+        const { address, epoch_no_min, epoch_no_max, page_no, page_size, order, query, odata } = options || { undefined, undefined, undefined, undefined, undefined, undefined, undefined, true: 1 };
+        let queryParams = ["address", "epoch_no_min", "epoch_no_max", "page_no", "page_size", "order"];
         let query_ = queryParams.filter(e => eval(e)).map(e => e + "=" + eval(e)).join("&");
         if (query) query_ = `${query_}&${query}`;
 
