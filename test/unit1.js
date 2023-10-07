@@ -5,12 +5,21 @@ import { CardanoBI } from '../CardanoBI.js'
 // const CBI = await new CardanoBI({ apiKey: "*******", apiSecret: "******", network: "preprod" });
 // const CBI = await new CardanoBI({ apiKey: "SWZibUPx6EtqSq", apiSecret: "Hxke6IXAx4U", network: "preprod" });
 // const CBI = await new CardanoBI({ apiKey: "client_auto_2", apiSecret: "test", network: "preprod" });
+// const CBI = await new CardanoBI({ apiKey: "c1cbf4b7-4281-46fb-b834-4e21b7fd8cd3", apiSecret: "cdee85fc-5ec5-48d8-bfa5-ea9585013399", network: "preprod" });
+// const CBI = await new CardanoBI({ apiKey: "CardanoBI.Portal.DuendeClient", apiSecret: "db9f9a2d-4cc3-79b8-7110-2049e5c4b159", network: "preprod" });
+// const CBI = await new CardanoBI({ network: "preprod" });
+// const CBI = await new CardanoBI();
 // const CBI = await new CardanoBI({ apiKey: "new_preprod_client", apiSecret: "secret", network: "preprod" });
-// const CBI = await new CardanoBI({ apiKey: "cardanobi_identity_admin", apiSecret: "cardanobi_admin_client_secret", network: "mainnet", idsBaseURL: "https://mainnet.cardanobi.io:44010"});
-// const CBI = await new CardanoBI({ apiKey: "cardanobi_identity_admin", apiSecret: "cardanobi_admin_client_secret", network: "preprod", idsBaseURL: "https://preprod.cardanobi.io:44010"});
-// const CBI = await new CardanoBI({ apiKey: "new_auto_admin", apiSecret: "secret", network: "preprod", idsBaseURL: "https://preprod.cardanobi.io:44010" });
-// const CBI = await new CardanoBI({ apiKey: "gBhwnOkXNnrUOGE8Uk5zfi8QbnmqLBXdDdzmvOqeAg4", apiSecret: "DjxxgxXf8nSKbpvDz8MqU7IDzXvCTALbGc57tlPeOI"});
-const CBI = await new CardanoBI({ apiKey: "hOhzauQkioPQtsiPwfHSt9xdwQxWZVa9BuMdoOHIg", apiSecret: "D71dCpk1J0meVDQn2T5MXbO8d9EdSHrQduuIWzZ8"});
+// const CBI = await new CardanoBI({ apiKey: "cardanobi_identity_admin", apiSecret: "cardanobi_admin_client_secret"});
+// const CBI = await new CardanoBI({ apiKey: "cardanobi_identity_admin", apiSecret: "cardanobi_admin_client_secret", network: "preprod"});
+// const CBI = await new CardanoBI({ apiKey: "new_auto_admin", apiSecret: "secret", network: "preprod"});
+// const CBI = await new CardanoBI({ apiKey: "508e2ca9-ac96-46bb-8451-991ff54e2a12", apiSecret: "4b29b4b4-1534-4db6-bb1c-17b2f9e2908a"}); //zerocitizen-mainnet
+// const CBI = await new CardanoBI({ apiKey: "lv74Wh9rf6vMOD3TDDyalgUejXEKN67k739E4l5U4E", apiSecret: "Kyt9OMzjT7alzL8vwrWi7TThanTSpAwIDsZ423Rns"}); //Fetachain
+// const CBI = await new CardanoBI({ apiKey: "hOhzauQkioPQtsiPwfHSt9xdwQxWZVa9BuMdoOHIg", apiSecret: "D71dCpk1J0meVDQn2T5MXbO8d9EdSHrQduuIWzZ8" }); //CardanoBI Admin
+
+const CBI = await new CardanoBI({ apiKey: "d950125e-f6a3-4878-b173-e0866aa54018", apiSecret: "a6bc4f6c-1d63-4733-a5f4-57f8d051fe12", network: "preprod" }); //CardanoBI Admin on preprod
+// const CBI = await new CardanoBI({ apiKey: "f6014ce4-59f8-42cc-ac12-f94d7cc6d3fc", apiSecret: "bf385c0f-d9e7-407d-8c3a-7b8ce792c9a6"}); //CardanoBI Admin on mainnet
+
 
 const runUnit1 = async () => {
   try {
@@ -89,16 +98,17 @@ const runUnit3 = async () => {
 
 const testBIAddresses = async () => {
   try {
-    // const stats = await CBI.core.addresses.stats_();
-    // const stats = await CBI.core.addresses.stats_({query: "$filter=epoch_no gt 28 and epoch_no lt 31&$orderby=tx_count desc"});
+    // const stats = await CBI.bi.addresses.stats_({address: "stake_test1urmpqeeexrkyjna48lmsx30a8auy4s0p40u2n9ugx8hdrfgfl3r44", query: "epoch_no_min=51&epoch_no_max=51"});
+    const stats = await CBI.bi.addresses.stats_({address: "stake1u8vvxf5jhnudxu74zuvwna5fdth9lnz20zz5y23ksck5jegcp28s3", query: "epoch_no_min=402&epoch_no_max=438&order=desc&page_size=50&page_no=4"});
     // const stats = await CBI.core.addresses.stats_({query: "$filter=epoch_no gt 28 and epoch_no lt 31&$orderby=tx_count desc", odata: true});
     // const stats = await CBI.core.addresses.stats_({stake_address: "stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz"});
     // const stats = await CBI.core.addresses.stats_({epoch_no: 29});
     // const stats = await CBI.core.addressesstats_();
-    // console.log(stats);
-
-    const stats = await CBI.bi.addressesstats_({odata: true, stake_address: "stake1788l48tts8s3l9fgx3k9tfnkgssf34hsztqsz5hp48fhupgdy8sy9"});
+    // const stats = await CBI.bi.addressesstats_({address: "addr1v9ywm0h3r8cnxrs04gfy7c3s2j44utjyvn5ldjdca0c2ltccgqdes", query: "order=asc&page_size=50&page_no=1", odata: true});
     console.log(stats);
+
+    // const stats = await CBI.bi.addressesstats_({odata: true, stake_address: "stake1788l48tts8s3l9fgx3k9tfnkgssf34hsztqsz5hp48fhupgdy8sy9"});
+    // console.log(stats);
 
     // console.log(CBI.client.accessToken);
 
@@ -131,18 +141,20 @@ const testBIEpochs = async () => {
 
 const testBIPools = async () => {
   try {
-    // const stats = await CBI.core.pools.stats_();
-    // const stats = await CBI.core.pools.stats_({ pool_hash: 'pool17lr0zh49w3leg4ya0ndkyea0dmpr8ksnqz5mhdpwn8zxqg56tte' });
-    // const stats = await CBI.core.pools.stats_({odata: true});
-    // const stats = await CBI.core.poolsstats_();
-    // console.log(stats);
+    // preprod
+    // const stats = await CBI.bi.pools.stats_({ pool_hash: 'pool132jxjzyw4awr3s75ltcdx5tv5ecv6m042306l630wqjckhfm32r', query: "$orderby=epoch_no desc&$top=5" });
+    // const stats = await CBI.bi.pools.stats.epochs_({ epoch_no: 98, query: "$orderby=delegated_stakes desc" });
+    const stats = await CBI.bi.pools.stats.lifetime_({ pool_hash: 'pool132jxjzyw4awr3s75ltcdx5tv5ecv6m042306l630wqjckhfm32r'});
 
-    // const stats = await CBI.bi.pools.stats.epochs_({epoch_no: 390});
-    // console.log(stats);
-
-    const stats = await CBI.bi.poolsstats_({odata: true, pool_hash: "pool102vsulhfx8ua2j9fwl2u7gv57fhhutc3tp6juzaefgrn7ae35wm", query: "orderby=tx_count desc"});
+    // const stats = await CBI.bi.pools.stats_({ pool_hash: 'pool132jxjzyw4awr3s75ltcdx5tv5ecv6m042306l630wqjckhfm32r', query: "$orderby=epoch_no desc&$filter=epoch_no gt 26 and epoch_no le 95&$top=50&skip=50&$count=true" });
+    // const stats = await CBI.bi.poolsstats_({ pool_hash: 'pool132jxjzyw4awr3s75ltcdx5tv5ecv6m042306l630wqjckhfm32r', query: "$orderby=epoch_no desc&$filter=epoch_no gt 26 and epoch_no le 95&$top=50&skip=0&$count=true", odata: true });
     console.log(stats);
-    // console.log(CBI.client.accessToken);
+
+    // mainnet
+    // const stats = await CBI.bi.pools.stats_({ pool_hash: 'pool1y24nj4qdkg35nvvnfawukauggsxrxuy74876cplmxsee29w5axc', query: "$orderby=epoch_no desc&$filter=epoch_no gt 420 and epoch_no le 437&$top=10&skip=0&$count=true" });
+    // const stats = await CBI.bi.poolsstats_({ pool_hash: 'pool1y24nj4qdkg35nvvnfawukauggsxrxuy74876cplmxsee29w5axc', query: "$orderby=epoch_no desc&$filter=epoch_no gt 26 and epoch_no le 95&$top=50&skip=0&$count=true", odata: true });
+    // console.log(stats);
+
   } catch (error) {
     console.error(error);
   }
@@ -152,11 +164,20 @@ const testBIPools = async () => {
 const testCoreAddresses = async () => {
   try {
     // const addr_info = await CBI.core.addresses.info_();
-    // const addr_info = await CBI.core.addresses.info_({ address: "stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz", odata: true });
+    // const addr_info = await CBI.core.addresses.info_({ address: "stake_test1uqpuy4l076l65h02mccw38dfa8dstgl93aed2u9723wxw3ch5a6g3"});
+    const addr_info = await CBI.core.addresses.info_({ address: "addr1q8yydh977qedwzhk4elqq04654639hhdda0wju8n73wnr77ccvnf908c6dea29cca8mgj6hwtlxy57y9gg4rdp3df9js2xk28l"});
     // const addr_info = await CBI.core.addresses.info_({odata: true});
-    const addr_info = await CBI.core.addressesinfo_();
+    // const addr_info = await CBI.core.addressesinfo_();
     console.log(addr_info);
-    // console.log(CBI.client.accessToken);
+
+    const addr_info2 = await CBI.core.addresses.info_({ address: "addr1v9ywm0h3r8cnxrs04gfy7c3s2j44utjyvn5ldjdca0c2ltccgqdes"});
+    // const addr_info = await CBI.core.addresses.info_({odata: true});
+    // const addr_info = await CBI.core.addressesinfo_();
+    console.log(addr_info2);
+
+    // const addresses = await CBI.core.accounts.addresses_({stake_address: 'stake_test1uqpuy4l076l65h02mccw38dfa8dstgl93aed2u9723wxw3ch5a6g3'});
+    // console.log(addresses);
+
   } catch (error) {
     console.error(error);
   }
@@ -417,10 +438,96 @@ const testTransactions = async () => {
   }
 }
 
+const testAssets = async () => {
+  try {
+    // const assets = await CBI.core.assets_();
+    // console.log(assets);
+
+    // const assets = await CBI.core.assets_({fingerprint: 'asset1w8wujx5xpxk88u94t0c60lsjlgwpd635a3c3lc'});
+    // console.log(assets);
+
+    const assets = await CBI.core.assets.history_({
+      fingerprint: 'asset1gqp4wdmclgw2tqmkm3nq7jdstvqpesdj3agnel',
+      page_size: 5,
+      page_no: 2
+    });
+    console.log(assets);
+
+    // const assets = await CBI.core.assets.history_({
+    //   fingerprint: 'asset1gapvhk8genflnumqsgwe6jg2q92ktxuvmpr7jc'
+    // });
+    // console.log(assets);
+
+    // const assets = await CBI.core.assets.transactions_({fingerprint: 'asset1gapvhk8genflnumqsgwe6jg2q92ktxuvmpr7jc'});
+    // console.log(assets);
+
+    // const assets = await CBI.core.assets.addresses_({
+    //   fingerprint: 'asset1gqp4wdmclgw2tqmkm3nq7jdstvqpesdj3agnel',
+    //   order: "desc", page_size: 3, page_no: 1, query: "orderby=quantity desc"
+    // });
+    // console.log(assets);
+
+    // const assets = await CBI.core.assets.policies_({
+    //   policy_hash: '706e1c53ed984b016f2c0fc79a450fdb572aa21e4e87d6f74d0b6e8a'
+    // });
+    // console.log(assets);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const testAccounts = async () => {
+  try {
+    // const accounts = await CBI.core.accounts_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
+    // console.log(accounts);
+
+    // const rewards = await CBI.core.accounts.rewards_({ stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz', query: '$orderby=earned_epoch desc'});
+    // console.log(rewards);
+
+    // const staking = await CBI.core.accounts.staking_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
+    // console.log(staking);
+
+    // const delegations = await CBI.core.accounts.delegations_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
+    // console.log(delegations);
+
+    // const registrations = await CBI.core.accounts.registrations_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
+    // console.log(registrations);
+
+    // const withdrawals = await CBI.core.accounts.withdrawals_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
+    // console.log(withdrawals);
+
+    // const mirs = await CBI.core.accounts.mirs_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
+    // console.log(mirs);
+
+    // const addresses = await CBI.core.accounts.addresses_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
+    // console.log(addresses);
+
+    const assets = await CBI.core.accounts.assets_({stake_address: 'stake_test1urz84tnkqjx37tqfk02a58yhusajp2qgfyuz5nekqvrm97qdql4ha'});
+    console.log(assets);
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const testPolls = async () => {
+  try {
+    const polls = await CBI.core.polls_();
+    console.log(polls);
+
+    // const poll = await CBI.core.polls_({poll_hash: '62c6be72bdf0b5b16e37e4f55cf87e46bd1281ee358b25b8006358bf25e71798'});
+    const poll = await CBI.core.polls_({poll_hash: '96861fe7da8d45ba5db95071ed3889ed1412929f33610636c072a4b5ab550211'});
+    console.log(poll);
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // runUnit1();
 // runZeroCitizen();
 // runUnit3();
-testBIAddresses();
+// testBIAddresses();
 // testBIEpochs();
 // testBIPools();
 // testCoreEpochs();
@@ -431,12 +538,15 @@ testBIAddresses();
 // testCoreOdataEpochsParams();
 // testCoreAddresses();
 // testTransactions();
+// testAssets();
+testAccounts();
+// testPolls();
 
 // const epochs_params = await CBI.core.epochs.params_({no: 31, odata: true, query: "$select=epoch_no,nonce"});
 // const epochs_params = await CBI.core.epochs.params_();
 // console.log(epochs_params);
-console.log(CBI.client.accessToken);
-console.log(CBI.client.network);
+// console.log(CBI.client.accessToken);
+// console.log(CBI.client.network);
 // const blocks = await CBI.core.blocks.latest_();
 // console.log(blocks);
 // const blocks2 = await CBI.core.epochs_({ query: "$orderby=id desc&$top=1" });
@@ -449,3 +559,9 @@ console.log(CBI.client.network);
 // console.log(blocks3);
 // const blocks4 = await CBI.core.epochs_({query: "$orderby=id desc&$top=1"});
 // console.log(blocks4);
+
+// const block = await CBI.core.blocks.latest_();
+// console.log(block);
+console.log(CBI.client.accessToken);
+console.log(CBI.client.network);
+// console.log(CBI.client.auth_token);
