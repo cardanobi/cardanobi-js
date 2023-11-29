@@ -96,6 +96,7 @@ export class APIClient {
                     'Client-Api-Key': this.apiKey
                 };
 
+            // console.log("getRequest, url:", url);
             const response = await axios({
                 method: 'get',
                 url: url,
@@ -115,6 +116,8 @@ export class APIClient {
         try {
             if (this.accessToken === undefined)
                 this.accessToken = await this.getAccessToken();
+
+            // console.log("getPrivate, accessToken:", this.accessToken);
 
             if (this.accessToken) {
                 const response = await this.getRequest(this.baseURL + "/" + routeUrl, this.accessToken);

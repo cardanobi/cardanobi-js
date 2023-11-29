@@ -8,8 +8,8 @@ export const API_BASE_URLS = {
 
 export const IDS_BASE_URLS = {
     mainnet: 'https://cardanobi.io:44010',
-    preprod: 'https://preprod.cardanobi.io:44010',
-    preview: 'https://preview.cardanobi.io:44010'
+    preprod: 'https://cardanobi.io:44010',
+    preview: 'https://cardanobi.io:44010'
 };
 
 export const API_VERSION = 1;

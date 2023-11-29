@@ -1,10 +1,14 @@
 'use strict'
 import { CardanoBI } from '../CardanoBI.js'
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const CBI = await new CardanoBI({
-    apiKey: "b37d3277-e695-4e55-a675-276e113393da",
-    apiSecret: "103106cc-609e-4503-a7d5-bf711cc06245"
-});
+    apiKey: process.env.CBI_API_KEY,
+    apiSecret: process.env.CBI_API_SECRET,
+    network:  process.env.CBI_EN
+  });
 
 const block = await CBI.core.blocks.latest_();
 console.log(block);

@@ -1,25 +1,15 @@
 'use strict'
 import { CardanoBI } from '../CardanoBI.js'
 // import { CardanoBI } from '@cardanobi/cardanobi-js';
+import * as dotenv from 'dotenv';
 
-// const CBI = await new CardanoBI({ apiKey: "*******", apiSecret: "******", network: "preprod" });
-// const CBI = await new CardanoBI({ apiKey: "SWZibUPx6EtqSq", apiSecret: "Hxke6IXAx4U", network: "preprod" });
-// const CBI = await new CardanoBI({ apiKey: "client_auto_2", apiSecret: "test", network: "preprod" });
-// const CBI = await new CardanoBI({ apiKey: "c1cbf4b7-4281-46fb-b834-4e21b7fd8cd3", apiSecret: "cdee85fc-5ec5-48d8-bfa5-ea9585013399", network: "preprod" });
-// const CBI = await new CardanoBI({ apiKey: "CardanoBI.Portal.DuendeClient", apiSecret: "db9f9a2d-4cc3-79b8-7110-2049e5c4b159", network: "preprod" });
-// const CBI = await new CardanoBI({ network: "preprod" });
-// const CBI = await new CardanoBI();
-// const CBI = await new CardanoBI({ apiKey: "new_preprod_client", apiSecret: "secret", network: "preprod" });
-// const CBI = await new CardanoBI({ apiKey: "cardanobi_identity_admin", apiSecret: "cardanobi_admin_client_secret"});
-// const CBI = await new CardanoBI({ apiKey: "cardanobi_identity_admin", apiSecret: "cardanobi_admin_client_secret", network: "preprod"});
-// const CBI = await new CardanoBI({ apiKey: "new_auto_admin", apiSecret: "secret", network: "preprod"});
-// const CBI = await new CardanoBI({ apiKey: "508e2ca9-ac96-46bb-8451-991ff54e2a12", apiSecret: "4b29b4b4-1534-4db6-bb1c-17b2f9e2908a"}); //zerocitizen-mainnet
-// const CBI = await new CardanoBI({ apiKey: "lv74Wh9rf6vMOD3TDDyalgUejXEKN67k739E4l5U4E", apiSecret: "Kyt9OMzjT7alzL8vwrWi7TThanTSpAwIDsZ423Rns"}); //Fetachain
-// const CBI = await new CardanoBI({ apiKey: "hOhzauQkioPQtsiPwfHSt9xdwQxWZVa9BuMdoOHIg", apiSecret: "D71dCpk1J0meVDQn2T5MXbO8d9EdSHrQduuIWzZ8" }); //CardanoBI Admin
+dotenv.config();
 
-const CBI = await new CardanoBI({ apiKey: "d950125e-f6a3-4878-b173-e0866aa54018", apiSecret: "a6bc4f6c-1d63-4733-a5f4-57f8d051fe12", network: "preprod" }); //CardanoBI Admin on preprod
-// const CBI = await new CardanoBI({ apiKey: "f6014ce4-59f8-42cc-ac12-f94d7cc6d3fc", apiSecret: "bf385c0f-d9e7-407d-8c3a-7b8ce792c9a6"}); //CardanoBI Admin on mainnet
-
+const CBI = await new CardanoBI({
+  apiKey: process.env.CBI_API_KEY,
+  apiSecret: process.env.CBI_API_SECRET,
+  network:  process.env.CBI_EN
+});
 
 const runUnit1 = async () => {
   try {
@@ -484,8 +474,8 @@ const testAccounts = async () => {
     // const rewards = await CBI.core.accounts.rewards_({ stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz', query: '$orderby=earned_epoch desc'});
     // console.log(rewards);
 
-    // const staking = await CBI.core.accounts.staking_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
-    // console.log(staking);
+    const staking = await CBI.core.accounts.staking_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
+    console.log(staking);
 
     // const delegations = await CBI.core.accounts.delegations_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
     // console.log(delegations);
@@ -502,8 +492,8 @@ const testAccounts = async () => {
     // const addresses = await CBI.core.accounts.addresses_({stake_address: 'stake_test1uqh4cqczjpcjgnd3vhntldk9utmc3754tyrxy9seghptzwc6zayzz'});
     // console.log(addresses);
 
-    const assets = await CBI.core.accounts.assets_({stake_address: 'stake_test1urz84tnkqjx37tqfk02a58yhusajp2qgfyuz5nekqvrm97qdql4ha'});
-    console.log(assets);
+    // const assets = await CBI.core.accounts.assets_({stake_address: 'stake_test1urz84tnkqjx37tqfk02a58yhusajp2qgfyuz5nekqvrm97qdql4ha'});
+    // console.log(assets);
 
   } catch (error) {
     console.error(error);
@@ -539,7 +529,7 @@ const testPolls = async () => {
 // testCoreAddresses();
 // testTransactions();
 // testAssets();
-testAccounts();
+// testAccounts();
 // testPolls();
 
 // const epochs_params = await CBI.core.epochs.params_({no: 31, odata: true, query: "$select=epoch_no,nonce"});
@@ -560,8 +550,8 @@ testAccounts();
 // const blocks4 = await CBI.core.epochs_({query: "$orderby=id desc&$top=1"});
 // console.log(blocks4);
 
-// const block = await CBI.core.blocks.latest_();
-// console.log(block);
+let block = await CBI.core.blocks.latest_();
+console.log(block);
 console.log(CBI.client.accessToken);
 console.log(CBI.client.network);
 // console.log(CBI.client.auth_token);
